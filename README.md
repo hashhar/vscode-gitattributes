@@ -1,65 +1,46 @@
-# vscode-gitattributes README
+# gitattribute extension for Visual Studio Code
 
-This is the README for your extension "vscode-gitattributes". After writing up a brief description, we recommend including the following sections.
+An extension for Visual Studio Code that assists you in working with `.gitattribute` files.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- Language support for `.gitattribute` files.
+- Allows adding a `.gitattribute` file by pulling files from the [alexkaratarakis/gitattributes](https://github.com/alexkaratarakis/gitattributes) repository.
 
-For example if there is an image subfolder under your extension project workspace:
+## Usage
 
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+Start command palette (with <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> or <kbd>F1</kbd>) and start typing `gitattribute` to see all available commands this extension offers.
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
 This extension contributes the following settings:
 
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+```JavaScript
+{
+    // Number of seconds the list of `.gitattribute` files retrieved from github will be cached
+    "gitattribute.cacheExpirationInterval": 86400
+}
+```
 
-## Known Issues
+## Roadmap
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+### v0.1
+Basic implementation that allows to pull a single `.gitattribute` file.
 
-## Release Notes
+### v0.2
+Add language support for `.gitattribute` files.
 
-Users appreciate release notes as you update your extension.
+### v0.3
+Support adding multiple `.gitattribute` files and merging them into a single file.
 
-### 1.0.0
+## Changelog
 
-Initial release of ...
+See [CHANGELOG.md](CHANGELOG.md)
 
-### 1.0.1
+## Licence
 
-Fixed issue #.
+See [LICENCE.txt](LICENCE.txt)
 
-### 1.1.0
+## Credits
 
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on OSX or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on OSX or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (OSX) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+Icon based on the Git logo by [Jason Long](https://twitter.com/jasonlong).

@@ -1,6 +1,6 @@
 {
-    "name": "vscode-gitattributes",
-    "displayName": "vscode-gitattributes",
+    "name": "vscode-gitattribute",
+    "displayName": "gitattribute",
     "description": "A simple extension that lets you pull .gitattribute files from https://github.com/alexkaratarakis/gitattributes and create a combined .gitattribute file.",
     "version": "0.0.1",
     "publisher": "hashhar",
