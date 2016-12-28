@@ -33,6 +33,9 @@ Add language support for `.gitattribute` files.
 ### v0.3
 Support adding multiple `.gitattribute` files and merging them into a single file.
 
+### v0.4
+Support for caching entire `.gitattributes` repository and updating only when new commits are available.
+
 ## Changelog
 
 See [CHANGELOG.md](CHANGELOG.md)
