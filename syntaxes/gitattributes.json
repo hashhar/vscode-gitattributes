@@ -1,0 +1,13 @@
+{
+    "name": "Gitattributes",
+    "scopeName": "text.gitattributes",
+    "fileTypes": [
+        ".gitattributes"
+    ],
+    "patterns": [{
+        "match": "^#.*$",
+        "name": "comment.gitattributes",
+        "comment": "Comments"
+    }],
+    "uuid": "5b07b063-c6c5-465e-ad5b-fbe69100d8dc"
+}

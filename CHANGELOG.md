@@ -8,5 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [0.2] - 2017-01-03
 ### Added
-- Basic implementation that allows to pull a single `.gitattributes` file.
 - Support adding multiple `.gitattributes` files and merging them into a single file.
+
+## [0.3] - 2017-01-04
+### Added
+- Basic language support to allow commenting / uncommenting lines in `.gitattributes` files.
