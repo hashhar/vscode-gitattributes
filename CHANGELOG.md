@@ -1,7 +1,12 @@
 # Change Log
-All notable changes to the "vscode-gitattributes" extension will be documented in this file.
+This project does not start at a v0.1 release because I started this on 25th December 2016 and published it on 3rd January 2017 and if I called it v0.1 I would feel bad knowing I only got our a minor revision in a YEAR. Hehehe.
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+All notable changes to this project will be documented in this file.
 
-## [Unreleased]
-- Initial release
+The format is based on [Keep a Changelog](http://keepachangelog.com/) 
+and this project adheres to [Semantic Versioning](http://semver.org/).
+
+## [0.2] - 2017-01-03
+### Added
+- Basic implementation that allows to pull a single `.gitattributes` file.
+- Support adding multiple `.gitattributes` files and merging them into a single file.

@@ -2,9 +2,12 @@
     "name": "gitattributes",
     "displayName": "gitattributes",
     "description": "A simple extension that lets you pull .gitattributes files from https://github.com/alexkaratarakis/gitattributes and create a combined .gitattributes file.",
-    "version": "0.0.1",
+    "version": "0.2.0",
     "publisher": "hashhar",
     "icon": "icon.png",
+    "galleryBanner": {
+        "color": "#008080"
+    },
     "repository": {
         "type": "git",
         "url": "https://github.com/hashhar/vscode-gitattributes"

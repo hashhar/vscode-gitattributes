@@ -28,10 +28,10 @@ This extension contributes the following settings:
 Basic implementation that allows to pull a single `.gitattributes` file.
 
 ### v0.2
-Add language support for `.gitattributes` files.
+Support adding multiple `.gitattributes` files and merging them into a single file.
 
 ### v0.3
-Support adding multiple `.gitattributes` files and merging them into a single file.
+Add language support for `.gitattributes` files.
 
 ### v0.4
 Merge `.gitattributes` files smartly by moving `* text=auto` to the top.
@@ -45,7 +45,7 @@ See [CHANGELOG.md](CHANGELOG.md)
 
 ## Licence
 
-See [LICENCE.txt](LICENCE.txt)
+See [LICENSE](LICENSE)
 
 ## Credits
 
