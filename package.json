@@ -1,9 +1,19 @@
 {
-    "name": "vscode-gitattribute",
-    "displayName": "gitattribute",
-    "description": "A simple extension that lets you pull .gitattribute files from https://github.com/alexkaratarakis/gitattributes and create a combined .gitattribute file.",
+    "name": "gitattributes",
+    "displayName": "gitattributes",
+    "description": "A simple extension that lets you pull .gitattributes files from https://github.com/alexkaratarakis/gitattributes and create a combined .gitattributes file.",
     "version": "0.0.1",
     "publisher": "hashhar",
+    "icon": "icon.png",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/hashhar/vscode-gitattributes"
+    },
+    "bugs": {
+        "url": "https://github.com/hashhar/vscode-gitattributes/issues"
+    },
+    "homepage": "https://github.com/hashhar/vscode-gitattributes",
+    "license": "MIT",
     "engines": {
         "vscode": "^1.5.0"
     },
@@ -11,14 +21,23 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:extension.sayHello"
+        "onCommand:addgitattributes"
     ],
     "main": "./out/src/extension",
     "contributes": {
         "commands": [{
-            "command": "extension.sayHello",
-            "title": "Hello World"
-        }]
+            "command": "addgitattributes",
+            "title": "Add gitattributes"
+        }],
+        "configuration": {
+            "properties": {
+                "gitattributes.cacheExpirationInterval": {
+                    "type": "integer",
+                    "default": "86400",
+                    "description": "Number of seconds the list of `.gitattributes` files retreived from GitHub will be cached"
+                }
+            }
+        }
     },
     "scripts": {
         "vscode:prepublish": "tsc -p ./",
@@ -31,6 +50,10 @@
         "vscode": "^1.0.0",
         "mocha": "^2.3.3",
         "@types/node": "^6.0.40",
-        "@types/mocha": "^2.2.32"
+        "@types/mocha": "^2.2.32",
+        "@types/github": "^0.0.0"
+    },
+    "dependencies": {
+        "github": "^7.1.0"
     }
 }
