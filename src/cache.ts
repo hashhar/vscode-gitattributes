@@ -37,7 +37,7 @@ export class Cache {
     /**
      * Cache expiration intervall in seconds
      */
-    private _cacheExpirationInterval: number
+    private _cacheExpirationInterval: number;
 
     constructor(cacheExpirationInterval: number) {
         this._store = {};
