@@ -101,6 +101,9 @@ export class GitattributesRepository {
 
                 file.on('finish', () => {
                     file.close(() => {
+                        if (flags === 'a') {
+                            deduplicate(operation);
+                        }
                         resolve(operation);
                     });
                 });
@@ -113,6 +116,26 @@ export class GitattributesRepository {
             });
         });
     }
+}
+
+/**
+ * Remove "* text=auto" if already present.
+ */
+function deduplicate(operation: GitattributesOperation) {
+    let found = false;
+    let newFile = fs.createWriteStream(operation.path + '.new', { flags: 'w' });
+    let re = new RegExp('\\* text=auto');
+    fs.readFileSync(operation.path).toString().split('\n').forEach(function (line: string) {
+        if (!line.match(re)) {
+            newFile.write(line.toString() + '\n');
+        } else if (!found) {
+            newFile.write(line.toString() + '\n');
+            found = true;
+        } else {
+            newFile.write('# Commented because this line appears before in the file.\n');
+            newFile.write('# ' + line.toString() + '\n');
+        }
+    });
 }
 
 const userAgent = 'vscode-gitattributes-extension';
