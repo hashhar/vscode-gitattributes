@@ -1,79 +1,86 @@
 {
-    "name": "gitattributes",
-    "displayName": "gitattributes",
-    "description": "A simple extension that lets you pull .gitattributes files from https://github.com/alexkaratarakis/gitattributes and create a combined .gitattributes file.",
-    "version": "0.3.0",
-    "publisher": "hashhar",
-    "icon": "icon.png",
-    "galleryBanner": {
-        "color": "#008080"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/hashhar/vscode-gitattributes"
-    },
-    "bugs": {
-        "url": "https://github.com/hashhar/vscode-gitattributes/issues"
-    },
-    "homepage": "https://github.com/hashhar/vscode-gitattributes",
-    "license": "MIT",
-    "engines": {
-        "vscode": "^1.5.0"
-    },
-    "categories": [
-        "Languages",
-        "Other"
+  "name": "gitattributes",
+  "displayName": "gitattributes",
+  "description": "A simple extension that lets you pull .gitattributes files from https://github.com/alexkaratarakis/gitattributes and create a combined .gitattributes file.",
+  "version": "0.4.0",
+  "publisher": "hashhar",
+  "icon": "icon.png",
+  "galleryBanner": {
+    "color": "#008080"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hashhar/vscode-gitattributes"
+  },
+  "bugs": {
+    "url": "https://github.com/hashhar/vscode-gitattributes/issues"
+  },
+  "homepage": "https://github.com/hashhar/vscode-gitattributes",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.5.0"
+  },
+  "categories": [
+    "Languages",
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:addgitattributes"
+  ],
+  "main": "./out/src/extension",
+  "contributes": {
+    "commands": [
+      {
+        "command": "addgitattributes",
+        "title": "Add gitattributes"
+      }
     ],
-    "activationEvents": [
-        "onCommand:addgitattributes"
+    "configuration": {
+      "title": "gitattributes extension configuration",
+      "properties": {
+        "gitattributes.cacheExpirationInterval": {
+          "type": "integer",
+          "default": "86400",
+          "description": "Number of seconds the list of `.gitattributes` files retreived from GitHub will be cached"
+        }
+      }
+    },
+    "languages": [
+      {
+        "id": "gitattributes",
+        "aliases": [
+          "Gitattributes"
+        ],
+        "filenames": [
+          ".gitattributes"
+        ],
+        "configuration": "./gitattributes.configuration.json"
+      }
     ],
-    "main": "./out/src/extension",
-    "contributes": {
-        "commands": [{
-            "command": "addgitattributes",
-            "title": "Add gitattributes"
-        }],
-        "configuration": {
-            "title": "gitattributes extension configuration",
-            "properties": {
-                "gitattributes.cacheExpirationInterval": {
-                    "type": "integer",
-                    "default": "86400",
-                    "description": "Number of seconds the list of `.gitattributes` files retreived from GitHub will be cached"
-                }
-            }
-        },
-        "languages": [{
-            "id": "gitattributes",
-            "aliases": [
-                "Gitattributes"
-            ],
-            "filenames": [
-                ".gitattributes"
-            ],
-            "configuration": "./gitattribute.configuration.json"
-        }],
-        "grammars": [{
-            "language": "gitattributes",
-            "scopeName": "text.gitattributes",
-            "path": "./syntaxes/gitattributes.json"
-        }]
-    },
-    "scripts": {
-        "vscode:prepublish": "tsc -p ./",
-        "compile": "tsc -watch -p ./",
-        "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "node ./node_modules/vscode/bin/test"
-    },
-    "devDependencies": {
-        "typescript": "^2.0.3",
-        "vscode": "^1.0.0",
-        "mocha": "^2.3.3",
-        "@types/node": "^6.0.40",
-        "@types/mocha": "^2.2.32",
-        "@types/github": "^0.0.0"
-    },
-    "dependencies": {
-        "github": "^7.1.0"
-    }
+    "grammars": [
+      {
+        "language": "gitattributes",
+        "scopeName": "text.gitattributes",
+        "path": "./syntaxes/gitattributes.json"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "tsc -p ./",
+    "compile": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "node ./node_modules/vscode/bin/test"
+  },
+  "devDependencies": {
+    "@types/github": "^0.0.0",
+    "@types/mocha": "^2.2.32",
+    "@types/node": "^6.0.40",
+    "mocha": "^2.3.3",
+    "tslint": "^4.4.2",
+    "typescript": "^2.0.3",
+    "vscode": "^1.0.0"
+  },
+  "dependencies": {
+    "github": "^7.1.0"
+  }
 }

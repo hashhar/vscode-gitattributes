@@ -55,16 +55,18 @@ export class GitattributesRepository {
                     return;
                 }
 
-                console.log(`vscode-gitattributes: GitHub API ratelimit remaining: ${response.meta['x-ratelimit-remaining']}`);
+                console.log(`vscode-gitattributes: GitHub API ratelimit remaining:
+                ${response.meta['x-ratelimit-remaining']}`);
 
                 let files = response.filter(file => {
-                    return (file.type === 'file' && file.name !== '.gitattributes' && file.name.endsWith('.gitattributes'));
+                    return (file.type === 'file' && file.name !== '.gitattributes' &&
+                        file.name.endsWith('.gitattributes'));
                 }).map(file => {
                     return {
                         label: file.name.replace(/\.gitattributes/, ''),
                         description: file.path,
                         url: file.download_url
-                    }
+                    };
                 });
 
                 // Cache the retreived gitattributes files.
@@ -84,7 +86,9 @@ export class GitattributesRepository {
             let file = fs.createWriteStream(operation.path, { flags: flags });
 
             // If appending to the existing .gitattributes file, write a NEWLINE as a separator
-            if (flags === 'a') file.write('\n');
+            if (flags === 'a') {
+                file.write('\n');
+            }
 
             let options = url.parse(operation.file.url);
             options.agent = getAgent(); // Proxy
@@ -97,6 +101,11 @@ export class GitattributesRepository {
 
                 file.on('finish', () => {
                     file.close(() => {
+                        if (flags === 'a') {
+                            let newFilename = deduplicate(operation);
+                            fs.unlink(operation.path);
+                            fs.rename(newFilename, operation.path);
+                        }
                         resolve(operation);
                     });
                 });
@@ -109,6 +118,28 @@ export class GitattributesRepository {
             });
         });
     }
+}
+
+/**
+ * Remove "* text=auto" if already present.
+ */
+function deduplicate(operation: GitattributesOperation) {
+    let found = false;
+    let newPath = operation.path + '.new';
+    let newFile = fs.createWriteStream(newPath, { flags: 'w' });
+    let re = new RegExp('\\* text=auto');
+    fs.readFileSync(operation.path).toString().split('\n').forEach(function (line: string) {
+        if (!line.match(re)) {
+            newFile.write(line.toString() + '\n');
+        } else if (!found) {
+            newFile.write(line.toString() + '\n');
+            found = true;
+        } else {
+            newFile.write('# Commented because this line appears before in the file.\n');
+            newFile.write('# ' + line.toString() + '\n');
+        }
+    });
+    return newPath;
 }
 
 const userAgent = 'vscode-gitattributes-extension';
@@ -139,7 +170,9 @@ let gitattributesRepository = new GitattributesRepository(client);
 let agent;
 
 function getAgent() {
-    if (agent) return agent;
+    if (agent) {
+        return agent;
+    }
 
     // Read proxy url in the following order: vscode settings, environment variables
     proxy = proxy || process.env.HTTPS_PROXY || process.env.HTTP_PROXY;
@@ -157,9 +190,10 @@ function getGitattributesFiles() {
     return Promise.all([
         gitattributesRepository.getFiles()
     ]).then((result) => {
-        let files: GitattributesFile[] = Array.prototype.concat.apply([], result).sort((a, b) => a.label.localeCompare(b.label));
+        let files: GitattributesFile[] = Array.prototype.concat.apply([], result).sort((a, b) =>
+            a.label.localeCompare(b.label));
         return files;
-    })
+    });
 }
 
 function promptForOperation() {
@@ -178,9 +212,11 @@ function promptForOperation() {
 function showSuccessMessage(operation: GitattributesOperation) {
     switch (operation.type) {
         case OperationType.Append:
-            return vscode.window.showInformationMessage(`Appended ${operation.file.description} to the existing .gitattributes in the project root`);
+            return vscode.window.showInformationMessage(`Appended ${operation.file.description} to the existing \
+            .gitattributes in the project root`);
         case OperationType.Overwrite:
-            return vscode.window.showInformationMessage(`Created .gitattributes file in the project root based on ${operation.file.description}`);
+            return vscode.window.showInformationMessage(`Created .gitattributes file in the project root based on \
+            ${operation.file.description}`);
         default:
             throw new Error('Unsupported operation');
     }
@@ -193,7 +229,7 @@ export function activate(context: vscode.ExtensionContext) {
     let disposable = vscode.commands.registerCommand('addgitattributes', () => {
         // Check if we are in a workspace.
         if (!vscode.workspace.rootPath) {
-            vscode.window.showErrorMessage('No workspace open. Please open a workspace to use this command.')
+            vscode.window.showErrorMessage('No workspace open. Please open a workspace to use this command.');
             return;
         }
 
@@ -249,5 +285,5 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 export function deactivate() {
-    console.log('gitattributes: extension is now deactived.')
+    console.log('gitattributes: extension is now deactived.');
 }
