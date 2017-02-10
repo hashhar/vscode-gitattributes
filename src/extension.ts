@@ -212,10 +212,10 @@ function promptForOperation() {
 function showSuccessMessage(operation: GitattributesOperation) {
     switch (operation.type) {
         case OperationType.Append:
-            return vscode.window.showInformationMessage(`Appended ${operation.file.description} to the existing
+            return vscode.window.showInformationMessage(`Appended ${operation.file.description} to the existing \
             .gitattributes in the project root`);
         case OperationType.Overwrite:
-            return vscode.window.showInformationMessage(`Created .gitattributes file in the project root based on
+            return vscode.window.showInformationMessage(`Created .gitattributes file in the project root based on \
             ${operation.file.description}`);
         default:
             throw new Error('Unsupported operation');

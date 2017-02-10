@@ -2,7 +2,7 @@
   "name": "gitattributes",
   "displayName": "gitattributes",
   "description": "A simple extension that lets you pull .gitattributes files from https://github.com/alexkaratarakis/gitattributes and create a combined .gitattributes file.",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "publisher": "hashhar",
   "icon": "icon.png",
   "galleryBanner": {
@@ -54,7 +54,7 @@
         "filenames": [
           ".gitattributes"
         ],
-        "configuration": "./gitattribute.configuration.json"
+        "configuration": "./gitattributes.configuration.json"
       }
     ],
     "grammars": [
