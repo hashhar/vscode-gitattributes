@@ -102,7 +102,9 @@ export class GitattributesRepository {
                 file.on('finish', () => {
                     file.close(() => {
                         if (flags === 'a') {
-                            deduplicate(operation);
+                            let newFilename = deduplicate(operation);
+                            fs.unlink(operation.path);
+                            fs.rename(newFilename, operation.path);
                         }
                         resolve(operation);
                     });
@@ -123,7 +125,8 @@ export class GitattributesRepository {
  */
 function deduplicate(operation: GitattributesOperation) {
     let found = false;
-    let newFile = fs.createWriteStream(operation.path + '.new', { flags: 'w' });
+    let newPath = operation.path + '.new';
+    let newFile = fs.createWriteStream(newPath, { flags: 'w' });
     let re = new RegExp('\\* text=auto');
     fs.readFileSync(operation.path).toString().split('\n').forEach(function (line: string) {
         if (!line.match(re)) {
@@ -136,6 +139,7 @@ function deduplicate(operation: GitattributesOperation) {
             newFile.write('# ' + line.toString() + '\n');
         }
     });
+    return newPath;
 }
 
 const userAgent = 'vscode-gitattributes-extension';
