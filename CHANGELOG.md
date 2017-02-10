@@ -9,6 +9,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this
 project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.4.1] - 2017-02-10
+
+### Fixed
+
+- Fix commenting command not working in `.gitattributes` files. Now you can
+  press `Ctrl + /` to comment a line in a `.gitattributes` file.
+
 ## [0.4] - 2017-02-10
 
 ### Added
